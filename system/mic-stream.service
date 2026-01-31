@@ -1,0 +1,13 @@
+[Unit]
+Description=Pi Mic Streaming Service
+After=network.target
+
+[Service]
+User=pi
+ExecStart=/usr/bin/ffmpeg -f alsa -ac 1 -i plughw:0 -ar 48000 -acodec mp3 -f mp3 icecast://source:jacksonville13@localhost:8000/live
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+
